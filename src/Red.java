@@ -77,6 +77,10 @@
 
         ArrayList<Nodo> nodosAislados() {
             // Obtener nodos aislados (vecinos.size()==0)
-            return new ArrayList<>();
+            ArrayList<Nodo> vacios = new ArrayList<>();
+            for (Nodo n : nodos) {
+                if (n.getVecinos().size() == 0) vacios.add(n);
+            }
+            return vacios;
         }
     }
