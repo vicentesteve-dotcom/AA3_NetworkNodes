@@ -57,15 +57,32 @@
         }
   
         int contarVulnerablesAlcanzables(Nodo origen) {
-            // Contar vulnerables alcanzables desde origen (BFS)
-            int total_vuln = 0;
-            for(Nodo v : origen.getVecinos()){
-                if(v.getVulnerable() == true){
-                    total_vuln++;
+            ArrayList<Nodo> pila = new ArrayList<>();
+            ArrayList<Nodo> nodosContats = new ArrayList<>();
+
+            pila.add(origen);
+            nodosContats.add(origen);
+
+            int totalVuln = 0;
+
+            while (!pila.isEmpty()) {
+                Nodo actual = pila.remove(pila.size() - 1);
+
+                for (Nodo vecino : actual.getVecinos()) {
+                    if (!nodosContats.contains(vecino)) {
+                        nodosContats.add(vecino);
+                        pila.add(vecino);
+
+                        if (vecino.getVulnerable()) {
+                            totalVuln++;
+                        }
+                    }
                 }
             }
-            return total_vuln;
+            return totalVuln;
         }
+
+
 
         String listarVecinosDe(Nodo n) {
             String tmp = "";
@@ -79,7 +96,7 @@
             // Obtener nodos aislados (vecinos.size()==0)
             ArrayList<Nodo> vacios = new ArrayList<>();
             for (Nodo n : nodos) {
-                if (n.getVecinos().size() == 0) vacios.add(n);
+                if (n.getVecinos().isEmpty()) vacios.add(n);
             }
             return vacios;
         }
