@@ -1,31 +1,26 @@
 import java.util.ArrayList;
 
 public class Nodo {
-    private String nombre;
+    String nombre;
+    String ip;
+    boolean firewall;
+    boolean vulnerable;
+    boolean comprometido;
+    ArrayList<Nodo> vecinos;
 
-    private ArrayList <Nodo> vecinos;    
-
-    public Nodo(String nombre) {
-        this.nombre = nombre;
-        this.vecinos = new ArrayList<>();
-    }
-    
-    public void connectar(Nodo otro){
-        if(!vecinos.contains(otro)){
-            vecinos.add(otro);
-        }
-    }
-    
-    public String getNombre(){
-        return nombre;
+    Nodo(String nombre, String ip, boolean firewall, boolean vulnerable) {
+        // TODO: Realizar constructor
     }
 
-    public String getVecinos(){
-        String tmp = "";
+        
+    void conectar(Nodo otro) {
+        // TODO: conecta este nodo con "otro" (sin duplicados)
+    }
 
-        for(Nodo v : vecinos){
-            tmp += "- [" + v.getNombre() + "] "; 
-        }
-        return tmp;
+    @Override
+    public String toString() {
+        // TODO: devolver algo tipo:
+        // "WebServer (172.16.0.10) [VULN] [PWN]" etc.
+        return "";
     }
 }
