@@ -7,6 +7,8 @@ public class Nodo {
     boolean vulnerable;
     boolean comprometido;
     ArrayList<Nodo> vecinos;
+    boolean propagacion;
+
 
     Nodo(String nombre, String ip, boolean firewall, boolean vulnerable) {
         // TODO: Realizar constructor
@@ -16,19 +18,28 @@ public class Nodo {
         this.firewall = firewall;
         this.vulnerable = vulnerable;
         this.comprometido = false;
+        this.propagacion = true;
 
     }
 
         
     void conectar(Nodo otro) {
         // TODO: conecta este nodo con "otro" (sin duplicados)
-        if(!vecinos.contains(otro)) {
-            vecinos.add(otro)
+        if(!vecinos.contains(otro) && propagacion == true) {
+            vecinos.add(otro);
         }
+    }
+
+    public String getNombre() {
+        return nombre;
     }
 
     public String getIp() {
         return ip;
+    }
+
+    public boolean getFirewall() {
+        return firewall;
     }
 
     public boolean getVulnerable() {
@@ -42,6 +53,12 @@ public class Nodo {
     public void setComprometido(boolean c) {
         this.comprometido = c;
     }
+
+    public void setPropagacion(boolean propagacion) {
+        this.propagacion = propagacion;
+    }
+
+
 
     @Override
     public String toString() {
